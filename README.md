@@ -1,6 +1,6 @@
 # Distributed Scheduler
 
-# Problem Statement
+## Problem Statement
 Design a distributed task scheduler capable of executing long running tasks by dividing them into multiple smaller unit of work and executing them parallely on multiple nodes.
 - Scheduler must be capable of the following:
   - Distributed - Ability to run on multiple nodes
@@ -21,7 +21,7 @@ Design a distributed task scheduler capable of executing long running tasks by d
     - The Child Task is the smaller & manageable unit of work that can be executed parallely. The master task must ensure that child task are not interleaved & can truly run parallely without requirement of any synchronization.
     - Once all child tasks have finished execution, the scheduler must ensure that master task has also been marked as success/failure.
   
-# Implementation
+## Implementation
 - Preferable language - Java
 - The implementation must follow OO best practices in the industry.
 - Whenever required, please stub complex logic with comments supporting your assumptions.
