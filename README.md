@@ -17,9 +17,9 @@ Design a distributed task scheduler capable of executing long running tasks by d
     - The role of the master task is to simply resolve placeholders and the implementation should have a strategy to reduce the task into manageable units of work that can be picked up by the Child Task.
     - The master task must create Child Task(s) with required task data required to execute them.
 
-- Child Task
-  - The Child Task is the smaller & manageable unit of work that can be executed parallely. The master task must ensure that child task are not interleaved & can truly run parallely without requirement of any synchronization.
-  - Once all child tasks have finished execution, the scheduler must ensure that master task has also been marked as success/failure.
+  - Child Task
+    - The Child Task is the smaller & manageable unit of work that can be executed parallely. The master task must ensure that child task are not interleaved & can truly run parallely without requirement of any synchronization.
+    - Once all child tasks have finished execution, the scheduler must ensure that master task has also been marked as success/failure.
   
 # Implementation
 - Preferable language - Java
