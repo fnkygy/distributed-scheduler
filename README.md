@@ -29,7 +29,7 @@ Design a distributed task scheduler capable of executing long running tasks by d
 - Sample child task - The child task must print numbers from a to b, which are divided and provided for by the sample master task.
 
 ```mermaid
-    classDiagram
-        Animal <|-- Duck
-        Animal <|-- Fish
+ classDiagram
+  Animal <|-- Duck
+  Animal <|-- Fish
 ```
