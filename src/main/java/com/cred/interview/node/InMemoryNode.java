@@ -1,5 +1,6 @@
 package com.cred.interview.node;
 
+import com.cred.interview.node.exception.MasterTaskExecutionException;
 import com.cred.interview.registry.Registry;
 import com.cred.interview.task.AbstractChildTask;
 import com.cred.interview.task.AbstractMasterTask;
@@ -21,12 +22,12 @@ public class InMemoryNode implements Node {
 
     @Override
     public MasterTaskStatus executeMasterTask(final AbstractMasterTask masterTask,
-                                              final Registry registry) {
+                                              final Registry registry) throws MasterTaskExecutionException {
         return masterTask.submit(registry);
     }
 
     @Override
-    public ChildTaskStatus executeChildTask(final AbstractChildTask childTask) {
+    public ChildTaskStatus executeChildTask(final AbstractChildTask childTask) throws MasterTaskExecutionException {
         return childTask.execute();
     }
 }

@@ -4,6 +4,9 @@ import com.cred.interview.node.Node;
 import com.cred.interview.task.AbstractChildTask;
 import com.cred.interview.task.AbstractMasterTask;
 import com.cred.interview.task.OperationType;
+import com.cred.interview.task.dao.TaskDao;
+import com.cred.interview.task.exception.TaskDistributeException;
+import com.cred.interview.task.executorservice.TaskExecutorService;
 import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.ArrayList;
@@ -16,8 +19,10 @@ public class IntegerIterateMasterTask extends AbstractMasterTask {
     private Integer end;
 
     public IntegerIterateMasterTask(final Integer start,
-                                    final Integer end) {
-        super(OperationType.INTEGER_ITERATE);
+                                    final Integer end,
+                                    final TaskDao taskDao,
+                                    final TaskExecutorService taskExecutorService) {
+        super(OperationType.INTEGER_ITERATE, taskDao, taskExecutorService);
         this.operationType = OperationType.INTEGER_ITERATE;
         this.start = start;
         this.end = end;
@@ -29,7 +34,7 @@ public class IntegerIterateMasterTask extends AbstractMasterTask {
     }
 
     @Override
-    public List<AbstractChildTask> distribute(final List<Node> nodes) {
+    public List<AbstractChildTask> distribute(final List<Node> nodes) throws TaskDistributeException {
         List<AbstractChildTask> childTasks = new ArrayList<>();
         Integer numNodes = nodes.size();
         Integer numIntegersPerNode = (end-start)/numNodes;

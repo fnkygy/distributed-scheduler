@@ -23,7 +23,7 @@ public class InMemoryScheduler implements Scheduler {
 
     @Override
     public MasterTaskStatus scheduleImmediately(AbstractMasterTask masterTask) {
-        Node master = registry.getNextAvailableMaster();
+        Node master = this.registry.getNextAvailableMaster();
         return master.executeMasterTask(masterTask, this.registry);
     }
 }

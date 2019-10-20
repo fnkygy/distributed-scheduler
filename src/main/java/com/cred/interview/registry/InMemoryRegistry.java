@@ -2,6 +2,9 @@ package com.cred.interview.registry;
 
 import com.cred.interview.node.Node;
 import com.cred.interview.node.elector.MasterElector;
+import com.cred.interview.registry.exception.ChildTaskExecutionException;
+import com.cred.interview.registry.exception.ExecutorUnavailableException;
+import com.cred.interview.registry.exception.MasterUnavailableException;
 import com.cred.interview.task.AbstractChildTask;
 import com.cred.interview.task.ChildTaskStatus;
 
@@ -19,17 +22,18 @@ public class InMemoryRegistry implements Registry {
     }
 
     @Override
-    public Node getNextAvailableMaster() {
+    public Node getNextAvailableMaster() throws MasterUnavailableException {
         return masterElector.getMaster();
     }
 
     @Override
-    public List<Node> getAvailableExecutors() {
+    public List<Node> getAvailableExecutors() throws ExecutorUnavailableException {
         return this.activeNodes;
     }
 
     @Override
-    public ChildTaskStatus executeTaskOnNode(final Node node, final AbstractChildTask task) {
+    public ChildTaskStatus executeTaskOnNode(final Node node, final AbstractChildTask task)
+            throws ChildTaskExecutionException {
         return node.executeChildTask(task);
     }
 }
