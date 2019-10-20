@@ -28,8 +28,6 @@ Design a distributed task scheduler capable of executing long running tasks by d
 - Sample master task - can be to print numbers from 1 to n (n is the template variable that is provided by the invoker when creating the master task)
 - Sample child task - The child task must print numbers from a to b, which are divided and provided for by the sample master task.
 
-```mermaid
- classDiagram
-  Animal <|-- Duck
-  Animal <|-- Fish
-```
+## Solution
+### Architecture
+![Distributed Scheduler Architecture](https://drive.google.com/open?id=1gZkCJzLCOLla8b6W8CJxLDFKuv-CZpSW)
