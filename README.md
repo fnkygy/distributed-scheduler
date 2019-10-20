@@ -65,6 +65,9 @@ The task is one more building block in the scheduler. It is an abstract base cla
 
 These two classes are the ones that will be exposed as a library to developers, so that they can develop their own tasks by adhering to the master-child principle.
 
+###### Checkpointing
+The child task exposes the capability to checkpoint it's current status to the master task, so as to provide the functionality of resuming from a particular checkpoint, in case of failures. This is not implemented in the demo, but functions have been placed to provide the functionality.
+
 <img src="https://drive.google.com/uc?export=view&id=1l5WwXRyh5QeECBoHJ0TDmkwaTxA_tZih" width="50%" height="50%"/>
 
 #### Tech Stack
@@ -87,6 +90,7 @@ For the sake of a demo, the implementation and tech stack has been brought down 
 - Deployment: All logically-separate components are segregated by interfaces rather than separate spring boot applications. It will all run in one single JVM.
 - Node management: There is no hazelcast used for communication, it will be an in-memory interface-to-interface communication.
 - Job management and storage: There is no storage, the DAO is a dummy implementation.
+- Checkpointing: There is no checkpointing implemented for the demo.
 
 ##### Testing
 There are two test cases in the repository, which cover:
