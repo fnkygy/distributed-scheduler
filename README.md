@@ -42,7 +42,7 @@ This is the main interface for the user. The user sees the scheduler having:
 - Manages the tasks against the registries.
 - Provides the ability for the user to schedule one-time or regular jobs.
 
-<img src="https://drive.google.com/uc?export=view&id=1z5E7pdqvfosx4aNVoaOVNB0e3fFP7BvL" width="25%" height="25%"/>
+<img src="https://drive.google.com/uc?export=view&id=1z5E7pdqvfosx4aNVoaOVNB0e3fFP7BvL" width="15%" height="15%"/>
 
 ##### Node
 This is the basic building block of an executor. A node has two possible operations:
