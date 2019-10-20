@@ -92,3 +92,5 @@ For the sake of a demo, the implementation and tech stack has been brought down 
 There are two test cases in the repository, which cover:
 - A successful task distribution and execution scenario
 - A failure case where one of the child tasks fail, leading to the rest being successful but the overall master task failing.
+
+Please run "mvn test" to execute the test cases, preferably using "IntelliJ Idea CE".
