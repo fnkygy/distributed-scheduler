@@ -6,6 +6,7 @@ import com.cred.interview.task.AbstractChildTask;
 import com.cred.interview.task.AbstractMasterTask;
 import com.cred.interview.task.ChildTaskStatus;
 import com.cred.interview.task.MasterTaskStatus;
+import com.cred.interview.task.exception.TaskSubmissionException;
 
 public class InMemoryNode implements Node {
 
@@ -23,7 +24,12 @@ public class InMemoryNode implements Node {
     @Override
     public MasterTaskStatus executeMasterTask(final AbstractMasterTask masterTask,
                                               final Registry registry) throws MasterTaskExecutionException {
-        return masterTask.submit(registry);
+        try {
+            return masterTask.submit(registry);
+        } catch (TaskSubmissionException e) {
+            /* TODO: Log this */
+            throw e;
+        }
     }
 
     @Override

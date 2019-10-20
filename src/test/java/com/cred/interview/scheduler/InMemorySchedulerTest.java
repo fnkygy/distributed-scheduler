@@ -31,7 +31,7 @@ public class InMemorySchedulerTest {
 
     @Test
     public void testSuccessfulIteration() {
-        System.out.println("Testing scheduler with 20 numbers and 6 nodes");
+        System.out.println("Testing Successful scheduler with 20 numbers and 6 nodes");
         List<Node> nodes = createNodes(6);
         Registry registry = new InMemoryRegistry(nodes, new RandomMasterElector(nodes));
         Scheduler scheduler = new InMemoryScheduler(registry);
@@ -48,7 +48,7 @@ public class InMemorySchedulerTest {
 
     @Test
     public void testFailureIteration() {
-        System.out.println("Testing scheduler with 20 numbers and 6 nodes");
+        System.out.println("Testing Failed scheduler with 20 numbers and 6 nodes");
         List<Node> nodes = createNodes(6);
         Registry registry = new InMemoryRegistry(nodes, new RandomMasterElector(nodes));
         Scheduler scheduler = new InMemoryScheduler(registry);
