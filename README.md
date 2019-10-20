@@ -1,4 +1,4 @@
-# CRED Interview - Distributed Scheduler
+# Distributed Scheduler
 
 # Problem Statement
 Design a distributed task scheduler capable of executing long running tasks by dividing them into multiple smaller unit of work and executing them parallely on multiple nodes.
