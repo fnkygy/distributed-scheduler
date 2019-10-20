@@ -29,7 +29,66 @@ Design a distributed task scheduler capable of executing long running tasks by d
 - Sample child task - The child task must print numbers from a to b, which are divided and provided for by the sample master task.
 
 ## Solution
-### Architecture
+### Architecture and Design
 <img src="https://drive.google.com/uc?export=view&id=176TWpTWohN8uM7M4l_s1FZi0sHkbmltq"/>
-Scheduler
 
+##### Open-Close Principle
+One of the main pillars on which this solution is built is the open-close principle. All logical entities are segregated by interfaces.
+
+##### Scheduler
+This is the main interface for the user. The user sees the scheduler having:
+- A user interface to provide user management and visibility.
+- The ability to maintain more than one registry for task execution.
+- Manages the tasks against the registries.
+- Provides the ability for the user to schedule one-time or regular jobs.
+
+<img src="https://drive.google.com/uc?export=view&id=1z5E7pdqvfosx4aNVoaOVNB0e3fFP7BvL"/>
+
+##### Node
+This is the basic building block of an executor. A node has two possible operations:
+- The ability to distribute tasks among other nodes and itself (execute a master job).
+- The ability to execute smaller tasks delegated by other masters and itself (execute a child job).
+
+Each node is independent, but communicates with other nodes through an embedded hazelcast grid. For the sake of simplicity, the nodes in the demo provided here communicate via interfaces in a single JVM. Master tasks and child tasks are evenly distributed among the nodes, and this is managed by the Registry.
+
+##### Registry
+The next bigger block is the Registry. This is the 'manager' of the nodes, and it takes care of:
+- Distribution of master and child tasks evenly across the cluster of nodes.
+- HA for every task, ensuring that other nodes can take over in case of failures.
+- Regular health checks to ensure node sanity.
+- Graceful bringup and shutdown of nodes.
+
+##### Task
+The task is one more building block in the scheduler. It is an abstract base class extended by two classes:
+- AbstractMasterTask
+- AbstractChildTask
+
+These two classes are the ones that will be exposed as a library to developers, so that they can develop their own tasks by adhering to the master-child principle.
+
+<img src="https://drive.google.com/uc?export=view&id=1l5WwXRyh5QeECBoHJ0TDmkwaTxA_tZih"/>
+
+#### Tech Stack
+##### Embedded Hazelcast for node management
+Hazelcast is an excellent in-memory platform to provide shared data across multiple nodes. This will be heavily used by the Registry to maintain shared data structures across nodes.
+
+##### Embedded Hazelcast for inter-node communication
+Whether it's synchronous or asynchronous communication (such as job status updates) across nodes, Hazelcast provides the features out of the box for inter-node communication.
+
+##### Cassandra as the data store
+The main reason for choosing Cassandra here are two fold:
+- It will serve as the disk storage for all the hazelcast data. In case hazelcast is down, Cassandra will be used as the backup to bring it up again.
+- It is a no-SQL datastore perfect for storing job templates, user management, job statuses, etc.
+
+##### Spring Boot for microservice deployment
+I've personally used Dropwizard extensively, but for this use case I've seen that the support for Hazelcast is better on Spring Boot than on Dropwizard. Hence the choice.
+
+#### Simplification for the demo
+For the sake of a demo, the implementation and tech stack has been brought down into:
+- Deployment: All logically-separate components are segregated by interfaces rather than separate spring boot applications. It will all run in one single JVM.
+- Node management: There is no hazelcast used for communication, it will be an in-memory interface-to-interface communication.
+- Job management and storage: There is no storage, the DAO is a dummy implementation.
+
+##### Testing
+There are two test cases in the repository, which cover:
+- A successful task distribution and execution scenario
+- A failure case where one of the child tasks fail, leading to the rest being successful but the overall master task failing.

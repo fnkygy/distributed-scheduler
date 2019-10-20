@@ -19,7 +19,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class InMemorySchedulerTest {
+public class SimpleSchedulerTest {
 
     private static List<Node> createNodes(final Integer numNodes) {
         List<Node> nodes = new ArrayList<>();
@@ -34,7 +34,7 @@ public class InMemorySchedulerTest {
         System.out.println("Testing Successful scheduler with 20 numbers and 6 nodes");
         List<Node> nodes = createNodes(6);
         Registry registry = new InMemoryRegistry(nodes, new RandomMasterElector(nodes));
-        Scheduler scheduler = new InMemoryScheduler(registry);
+        Scheduler scheduler = new SimpleScheduler(registry);
         TaskDao taskDao = new DummyTaskDao();
         TaskExecutorService taskExecutorService = new InMemoryFixedPoolExecutorService(taskDao);
 
@@ -51,7 +51,7 @@ public class InMemorySchedulerTest {
         System.out.println("Testing Failed scheduler with 20 numbers and 6 nodes");
         List<Node> nodes = createNodes(6);
         Registry registry = new InMemoryRegistry(nodes, new RandomMasterElector(nodes));
-        Scheduler scheduler = new InMemoryScheduler(registry);
+        Scheduler scheduler = new SimpleScheduler(registry);
         TaskDao taskDao = new DummyTaskDao();
         TaskExecutorService taskExecutorService = new InMemoryFixedPoolExecutorService(taskDao);
 

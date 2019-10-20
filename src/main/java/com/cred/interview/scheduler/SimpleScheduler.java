@@ -10,11 +10,11 @@ import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.List;
 
-public class InMemoryScheduler implements Scheduler {
+public class SimpleScheduler implements Scheduler {
 
     private Registry registry;
 
-    public InMemoryScheduler(final Registry registry) {
+    public SimpleScheduler(final Registry registry) {
         this.registry = registry;
     }
 
