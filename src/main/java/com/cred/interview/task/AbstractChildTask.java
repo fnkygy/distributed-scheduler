@@ -2,6 +2,7 @@ package com.cred.interview.task;
 
 import com.cred.interview.node.Node;
 import lombok.Getter;
+import org.apache.commons.lang3.NotImplementedException;
 
 public abstract class AbstractChildTask extends Task {
 
@@ -22,6 +23,11 @@ public abstract class AbstractChildTask extends Task {
         super(operationType);
         this.masterTask = masterTask;
         this.childNode = childNode;
+    }
+
+    protected void notifyCheckpoint() {
+        /* Not implemented in the demo */
+        return;
     }
 
     public abstract ChildTaskStatus execute();

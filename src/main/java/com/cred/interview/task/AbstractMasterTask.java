@@ -9,6 +9,7 @@ import com.cred.interview.task.exception.TaskDistributeException;
 import com.cred.interview.task.exception.TaskExecutionException;
 import com.cred.interview.task.exception.TaskSubmissionException;
 import com.cred.interview.task.executorservice.TaskExecutorService;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -39,6 +40,10 @@ public abstract class AbstractMasterTask extends Task {
         for (AbstractChildTask childTask : childTasks) {
             this.childTasks.put(childTask, ChildTaskStatus.NOT_STARTED);
         }
+    }
+
+    protected void notifyCheckpoint(AbstractChildTask childTask) {
+        throw new NotImplementedException("Not implemented in the demo");
     }
 
     public abstract void rebalance(List<Node> nodes);
