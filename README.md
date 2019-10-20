@@ -30,7 +30,7 @@ Design a distributed task scheduler capable of executing long running tasks by d
 
 ## Solution
 ### Architecture and Design
-<img src="https://drive.google.com/uc?export=view&id=176TWpTWohN8uM7M4l_s1FZi0sHkbmltq"/>
+<img src="https://drive.google.com/uc?export=view&id=176TWpTWohN8uM7M4l_s1FZi0sHkbmltq" width="75%" height="75%"/>
 
 ##### Open-Close Principle
 One of the main pillars on which this solution is built is the open-close principle. All logical entities are segregated by interfaces.
@@ -42,7 +42,7 @@ This is the main interface for the user. The user sees the scheduler having:
 - Manages the tasks against the registries.
 - Provides the ability for the user to schedule one-time or regular jobs.
 
-<img src="https://drive.google.com/uc?export=view&id=1z5E7pdqvfosx4aNVoaOVNB0e3fFP7BvL"/>
+<img src="https://drive.google.com/uc?export=view&id=1z5E7pdqvfosx4aNVoaOVNB0e3fFP7BvL" width="25%" height="25%"/>
 
 ##### Node
 This is the basic building block of an executor. A node has two possible operations:
@@ -65,7 +65,7 @@ The task is one more building block in the scheduler. It is an abstract base cla
 
 These two classes are the ones that will be exposed as a library to developers, so that they can develop their own tasks by adhering to the master-child principle.
 
-<img src="https://drive.google.com/uc?export=view&id=1l5WwXRyh5QeECBoHJ0TDmkwaTxA_tZih"/>
+<img src="https://drive.google.com/uc?export=view&id=1l5WwXRyh5QeECBoHJ0TDmkwaTxA_tZih" width="50%" height="50%"/>
 
 #### Tech Stack
 ##### Embedded Hazelcast for node management
