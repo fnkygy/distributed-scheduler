@@ -30,4 +30,5 @@ Design a distributed task scheduler capable of executing long running tasks by d
 
 ## Solution
 ### Architecture
-![Distributed Scheduler Architecture](https://drive.google.com/file/d/1gZkCJzLCOLla8b6W8CJxLDFKuv-CZpSW/view)
+![Distributed Scheduler Architecture]
+(https://drive.google.com/uc?export=view&id=1gZkCJzLCOLla8b6W8CJxLDFKuv-CZpSW)
